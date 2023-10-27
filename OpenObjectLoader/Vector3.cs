@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenObjectLoader.Types
+namespace OpenObjectLoader
 {
     public class Vector3
     {

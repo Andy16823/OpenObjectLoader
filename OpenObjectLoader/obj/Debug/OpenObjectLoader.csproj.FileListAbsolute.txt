@@ -1,0 +1,6 @@
+C:\Users\andy1\source\repos\OpenObjectLoader\OpenObjectLoader\bin\Debug\OpenObjectLoader.dll
+C:\Users\andy1\source\repos\OpenObjectLoader\OpenObjectLoader\bin\Debug\OpenObjectLoader.pdb
+C:\Users\andy1\source\repos\OpenObjectLoader\OpenObjectLoader\obj\Debug\OpenObjectLoader.csproj.AssemblyReference.cache
+C:\Users\andy1\source\repos\OpenObjectLoader\OpenObjectLoader\obj\Debug\OpenObjectLoader.csproj.CoreCompileInputs.cache
+C:\Users\andy1\source\repos\OpenObjectLoader\OpenObjectLoader\obj\Debug\OpenObjectLoader.dll
+C:\Users\andy1\source\repos\OpenObjectLoader\OpenObjectLoader\obj\Debug\OpenObjectLoader.pdb
