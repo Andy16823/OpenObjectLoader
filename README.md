@@ -6,7 +6,7 @@ to load multiple shapes (objects) within one model. This shapes can have multipl
 moment every shape has own materials. So there are no shared materials yet.
 
 --Example
-```
+``` C#
 using NetGL;
 using System;
 using System.Collections.Generic;
