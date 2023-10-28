@@ -9,7 +9,8 @@ Example
 ==
 
 Within this example the famous "sponza" scene from https://github.com/jimmiebergmann/Sponza gets rendered. For the matrices
-the GlmSharp libary is used. https://github.com/Philip-Trettner/GlmSharp
+the GlmSharp libary is used https://github.com/Philip-Trettner/GlmSharp. And for the rendering with OpenGL the NetGL wrapper
+is used https://github.com/Andy16823/NetGL-2023/tree/main
 
 ``` C#
 using NetGL;
