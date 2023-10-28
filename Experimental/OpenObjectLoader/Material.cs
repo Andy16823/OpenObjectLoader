@@ -11,6 +11,8 @@ namespace OpenObjectLoader
         public String Name { get; set; }
         public String TexturePath { get; set; }
         public String TextureName { get; set; }
+        public String NormalPath { get; set; }
+        public String AmbientOcclusionPath { get; set; }
         public Dictionary<String, object> Propeterys { get; set; }
         public List<Definition> Definitions { get; set; }
 
@@ -31,6 +33,11 @@ namespace OpenObjectLoader
         public float[] IndexTexCoords()
         {
             return Material.IndexTexCoords(_model, this);
+        }
+
+        public float[] IndexNormals()
+        {
+            return Material.IndexNormals(_model, this);
         }
 
         public static float[] IndexVerticies(Model model, Material material)
@@ -54,6 +61,18 @@ namespace OpenObjectLoader
                 texCoords.Add(model.TexCoords[face.vt - 1].y);
             }
             return texCoords.ToArray();
+        }
+
+        public static float[] IndexNormals(Model model, Material material)
+        {
+            List<float> normals = new List<float>();
+            foreach (var face in material.Definitions)
+            {
+                normals.Add(model.Normals[face.vn - 1].x);
+                normals.Add(model.Normals[face.vn - 1].y);
+                normals.Add(model.Normals[face.vn - 1].z);
+            }
+            return normals.ToArray();
         }
     }
 }

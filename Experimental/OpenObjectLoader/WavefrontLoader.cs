@@ -91,6 +91,14 @@ namespace OpenObjectLoader
                 {
                     material.TexturePath = line.Replace("map_Kd ", "");
                 }
+                else if(line.StartsWith("map_Disp") && materialFound)
+                {
+                    material.NormalPath = line.Replace("map_Disp ", "");
+                }
+                else if (line.StartsWith("map_Ka") && materialFound)
+                {
+                    material.AmbientOcclusionPath = line.Replace("map_Ka ", "");
+                }
             }
         }
 
