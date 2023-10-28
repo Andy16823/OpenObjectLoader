@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace OpenObjectLoader
 {
+    /// <summary>
+    /// The Loader Class.
+    /// </summary>
     public class WavefrontLoader
     {
-        public WavefrontLoader()
-        {
-
-        }
-
+        /// <summary>
+        /// Load the model from the given path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public Model LoadModel(String path)
         {
             Model model = new Model();
@@ -71,6 +74,11 @@ namespace OpenObjectLoader
             return model;
         }
 
+        /// <summary>
+        /// Load the material data from the given file
+        /// </summary>
+        /// <param name="material">The material to get loaded</param>
+        /// <param name="file">The file with the material data</param>
         public void LoadMaterial(Material material, String file)
         {
             bool materialFound = false;
@@ -111,6 +119,11 @@ namespace OpenObjectLoader
             return new System.IO.FileInfo(path).DirectoryName + "\\" + line.Split(' ')[1];
         }
 
+        /// <summary>
+        /// Parse a vector3
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         private Vector3 ParseVector3(String line)
         {
             float x = float.Parse(line.Split(' ')[1], CultureInfo.InvariantCulture);
@@ -119,6 +132,11 @@ namespace OpenObjectLoader
             return new Vector3(x, y, z);
         }
 
+        /// <summary>
+        /// Parse a vector2
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         private Vector3 ParseVector2(String line)
         {
             float x = float.Parse(line.Split(' ')[1], CultureInfo.InvariantCulture);

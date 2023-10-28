@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace OpenObjectLoader
 {
+    /// <summary>
+    /// The Loader Class.
+    /// </summary>
     public class WavefrontLoader
     {
-        public WavefrontLoader()
-        {
-
-        }
-
+        /// <summary>
+        /// Load the model from the given path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public Model LoadModel(String path)
         {
             Model model = new Model();
@@ -49,11 +52,17 @@ namespace OpenObjectLoader
                 }
                 else if(line.StartsWith("usemtl"))
                 {
-                    Material material = new Material(model);
-                    material.Name = line.Replace("usemtl ", "");
-                    activeShape.Materials.Add(material);
+                    String name = line.Replace("usemtl ", "");
+                    Material material = model.GetMaterial(name);
+                    if (material == null)
+                    {
+                        material = new Material(model);
+                        material.Name = line.Replace("usemtl ", "");
+                        this.LoadMaterial(material, model.MaterialLibary);
+                        model.Materials.Add(material);
+                    }
+                    activeShape.Materials.Add(model.Materials.IndexOf(material));
                     _activeMaterial = material;
-                    this.LoadMaterial(material, model.MaterialLibary);
                 }
                 else if(line.StartsWith("f"))
                 {
@@ -65,6 +74,11 @@ namespace OpenObjectLoader
             return model;
         }
 
+        /// <summary>
+        /// Load the material data from the given file
+        /// </summary>
+        /// <param name="material">The material to get loaded</param>
+        /// <param name="file">The file with the material data</param>
         public void LoadMaterial(Material material, String file)
         {
             bool materialFound = false;
@@ -85,6 +99,14 @@ namespace OpenObjectLoader
                 {
                     material.TexturePath = line.Replace("map_Kd ", "");
                 }
+                else if(line.StartsWith("map_Disp") && materialFound)
+                {
+                    material.NormalPath = line.Replace("map_Disp ", "");
+                }
+                else if (line.StartsWith("map_Ka") && materialFound)
+                {
+                    material.AmbientOcclusionPath = line.Replace("map_Ka ", "");
+                }
             }
         }
 
@@ -97,6 +119,11 @@ namespace OpenObjectLoader
             return new System.IO.FileInfo(path).DirectoryName + "\\" + line.Split(' ')[1];
         }
 
+        /// <summary>
+        /// Parse a vector3
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         private Vector3 ParseVector3(String line)
         {
             float x = float.Parse(line.Split(' ')[1], CultureInfo.InvariantCulture);
@@ -105,6 +132,11 @@ namespace OpenObjectLoader
             return new Vector3(x, y, z);
         }
 
+        /// <summary>
+        /// Parse a vector2
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         private Vector3 ParseVector2(String line)
         {
             float x = float.Parse(line.Split(' ')[1], CultureInfo.InvariantCulture);

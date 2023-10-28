@@ -6,18 +6,45 @@ using System.Threading.Tasks;
 
 namespace OpenObjectLoader
 {
+    /// <summary>
+    /// Material
+    /// </summary>
     public class Material
     {
+        /// <summary>
+        /// The Material Name
+        /// </summary>
         public String Name { get; set; }
+        /// <summary>
+        /// The path to the diffuse texture
+        /// </summary>
         public String TexturePath { get; set; }
-        public String TextureName { get; set; }
+        /// <summary>
+        /// The path to the normal map
+        /// </summary>
         public String NormalPath { get; set; }
+        /// <summary>
+        /// The path to the ambient occlusion map
+        /// </summary>
         public String AmbientOcclusionPath { get; set; }
+        /// <summary>
+        /// Propeterys dictonary for own parameters.
+        /// </summary>
         public Dictionary<String, object> Propeterys { get; set; }
+        /// <summary>
+        /// A list with face definitions
+        /// </summary>
         public List<Definition> Definitions { get; set; }
 
+        /// <summary>
+        /// The parent model
+        /// </summary>
         private Model _model;
 
+        /// <summary>
+        /// Create a new material for the model
+        /// </summary>
+        /// <param name="model"></param>
         public Material(Model model)
         {
             this._model = model;
@@ -25,21 +52,39 @@ namespace OpenObjectLoader
             this.Propeterys = new Dictionary<String, object>();
         }
 
+        /// <summary>
+        /// Returns an array with the indexed verticies
+        /// </summary>
+        /// <returns></returns>
         public float[] IndexVerticies()
         {
             return Material.IndexVerticies(_model, this);
         }
 
+        /// <summary>
+        /// Returns an array with the indexed texture coords
+        /// </summary>
+        /// <returns></returns>
         public float[] IndexTexCoords()
         {
             return Material.IndexTexCoords(_model, this);
         }
 
+        /// <summary>
+        /// Returns an array with the indexed normal coords
+        /// </summary>
+        /// <returns></returns>
         public float[] IndexNormals()
         {
             return Material.IndexNormals(_model, this);
         }
 
+        /// <summary>
+        /// Static function to index the vericies
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="material"></param>
+        /// <returns></returns>
         public static float[] IndexVerticies(Model model, Material material)
         {
             List<float> verticies = new List<float>();
@@ -52,6 +97,12 @@ namespace OpenObjectLoader
             return verticies.ToArray();
         }
 
+        /// <summary>
+        /// Static function to index the texture coords
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="material"></param>
+        /// <returns></returns>
         public static float[] IndexTexCoords(Model model, Material material)
         {
             List<float> texCoords = new List<float>();
@@ -63,6 +114,12 @@ namespace OpenObjectLoader
             return texCoords.ToArray();
         }
 
+        /// <summary>
+        /// Static function to index the normal coords
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="material"></param>
+        /// <returns></returns>
         public static float[] IndexNormals(Model model, Material material)
         {
             List<float> normals = new List<float>();

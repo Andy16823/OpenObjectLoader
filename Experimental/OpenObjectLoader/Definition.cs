@@ -6,12 +6,29 @@ using System.Threading.Tasks;
 
 namespace OpenObjectLoader
 {
+    /// <summary>
+    /// This Class contains the face deffinitions
+    /// </summary>
     public class Definition
     {
+        /// <summary>
+        /// The pointer to the vertex index
+        /// </summary>
         public int v { get; set; }
+
+        /// <summary>
+        /// The pointer to the texture index
+        /// </summary>
         public int vt { get; set; }
+
+        /// <summary>
+        /// The pointer to the normal index
+        /// </summary>
         public int vn { get; set; }
 
+        /// <summary>
+        /// Create a new deffinition
+        /// </summary>
         public Definition()
         {
             this.v = 0;
@@ -19,6 +36,9 @@ namespace OpenObjectLoader
             this.vn = 0;
         }
 
+        /// <summary>
+        /// Create a new deffinition
+        /// </summary>
         public Definition(int v, int vt, int vn)
         {
             this.v = v;
@@ -26,6 +46,9 @@ namespace OpenObjectLoader
             this.vn = vn;
         }
 
+        /// <summary>
+        /// Create a new deffinition
+        /// </summary>
         public Definition(String tokkeValue)
         {
             String[] tokkens = tokkeValue.Split('/');

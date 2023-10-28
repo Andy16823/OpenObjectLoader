@@ -9,7 +9,7 @@ namespace OpenObjectLoader
     public class Shape
     {
         public String Name { get; set; }
-        public List<Material> Materials { get; set; }
+        public List<int> Materials { get; set; }
         public Dictionary<String, object> Propertys { get; set; }
 
         private Model _parent;
@@ -17,7 +17,7 @@ namespace OpenObjectLoader
         public Shape(String name, Model parent) {
             this.Name = name;
             this.Propertys = new Dictionary<String, object>();
-            this.Materials = new List<Material>();
+            this.Materials = new List<int>();
             this._parent = parent;
         }
 
