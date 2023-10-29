@@ -7,6 +7,23 @@ using System.Threading.Tasks;
 namespace OpenObjectLoader
 {
     /// <summary>
+    /// Prebuild propetery values
+    /// </summary>
+    public static class Propetery
+    {
+        public const string PBR_ROUGHNESS = "PBR_ROUGHNESS";
+        public const string PBR_METALLIC = "PBR_METALLIC";
+        public const string PBR_SHEEN = "PBR_SHEEN";
+        public const string PBR_CLEARCOAT_ROUGHNESS = "PBR_CLEARCOAT_ROUGHNESS";
+        public const string PBR_CLEARCOAT_THICKNESS = "PBR_CLEARCOAT_THICKNESS";
+        public const string PBR_ANISO_ROT = "PBR_ANISO_ROT";
+        public const string PBR_ANISO = "PBR_ANISO";
+        public const string PBR_METALLIC_MAP = "PBR_METALLIC_MAP";
+        public const string PBR_ROUGHNESS_MAP = "PBR_ROUGHNESS_MAP";
+        public const string BUMP_STRENGTH = "BUMP_STRENGTH";
+    };
+
+    /// <summary>
     /// Material
     /// </summary>
     public class Material
@@ -35,6 +52,14 @@ namespace OpenObjectLoader
         /// A list with face definitions
         /// </summary>
         public List<Definition> Definitions { get; set; }
+
+        public Definition Definition
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         /// <summary>
         /// The parent model

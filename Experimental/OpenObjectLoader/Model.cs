@@ -47,6 +47,30 @@ namespace OpenObjectLoader
         public List<Material> Materials { get; set; }
         public String MaterialLibary { get; set; }
 
+        public Material Material
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Shape Shape
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Vector3 Vector3
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// Create a new model
         /// </summary>

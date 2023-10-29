@@ -13,6 +13,14 @@ namespace OpenObjectLoader
     /// </summary>
     public class WavefrontLoader
     {
+        public Model Model
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// Load the model from the given path
         /// </summary>
@@ -103,9 +111,61 @@ namespace OpenObjectLoader
                 {
                     material.NormalPath = line.Replace("map_Disp ", "");
                 }
+                else if(line.StartsWith("map_Bump") && materialFound)
+                {
+                    if (line.Replace("map_Bump ", "").StartsWith("-bm")) {
+                        String subStr = line.Replace("map_Bump -bm ", "");
+                        String[] parts = subStr.Split(' ');
+
+                        float bump_value = float.Parse(parts[0], CultureInfo.InvariantCulture);
+                        String filename = parts[1];
+                        material.NormalPath = filename;
+                        material.Propeterys.Add(Propetery.BUMP_STRENGTH, bump_value);
+                    }
+                    else
+                    {
+                        material.NormalPath = line.Replace("map_Bump ", "");
+                    }
+                }
                 else if (line.StartsWith("map_Ka") && materialFound)
                 {
                     material.AmbientOcclusionPath = line.Replace("map_Ka ", "");
+                }
+                else if(line.StartsWith("map_Pm") && materialFound)
+                {
+                    material.Propeterys.Add(Propetery.PBR_METALLIC_MAP, line.Replace("map_Pm ", ""));
+                }
+                else if (line.StartsWith("map_Pr") && materialFound)
+                {
+                    material.Propeterys.Add(Propetery.PBR_ROUGHNESS_MAP, line.Replace("map_Pr ", ""));
+                }
+                else if (line.StartsWith("Pr ") && materialFound)
+                {
+                    material.Propeterys.Add(Propetery.PBR_ROUGHNESS, float.Parse(line.Replace("Pr ", ""), CultureInfo.InvariantCulture));
+                }
+                else if (line.StartsWith("Pm ") && materialFound)
+                {
+                    material.Propeterys.Add(Propetery.PBR_METALLIC, float.Parse(line.Replace("Pm ", ""), CultureInfo.InvariantCulture));
+                }
+                else if (line.StartsWith("Ps ") && materialFound)
+                {
+                    material.Propeterys.Add(Propetery.PBR_SHEEN, float.Parse(line.Replace("Ps ", ""), CultureInfo.InvariantCulture));
+                }
+                else if (line.StartsWith("Pcr ") && materialFound)
+                {
+                    material.Propeterys.Add(Propetery.PBR_CLEARCOAT_ROUGHNESS, float.Parse(line.Replace("Pcr ", ""), CultureInfo.InvariantCulture));
+                }
+                else if (line.StartsWith("Pc ") && materialFound)
+                {
+                    material.Propeterys.Add(Propetery.PBR_CLEARCOAT_THICKNESS, float.Parse(line.Replace("Pc ", ""), CultureInfo.InvariantCulture));
+                }
+                else if (line.StartsWith("anisor ") && materialFound)
+                {
+                    material.Propeterys.Add(Propetery.PBR_ANISO_ROT, float.Parse(line.Replace("anisor ", ""), CultureInfo.InvariantCulture));
+                }
+                else if (line.StartsWith("aniso ") && materialFound)
+                {
+                    material.Propeterys.Add(Propetery.PBR_ANISO, float.Parse(line.Replace("aniso ", ""), CultureInfo.InvariantCulture));
                 }
             }
         }
